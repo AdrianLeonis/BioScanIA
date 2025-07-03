@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tratamientos para {{ pest }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <a href="{{ url_for('index') }}">← Volver</a>
+  <h1>Tratamientos contra {{ pest }}</h1>
+  <ul>
+    {% for t in treatments %}
+      <li>{{ t }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

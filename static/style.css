@@ -1,0 +1,417 @@
+:root {
+  --bg: #f7f8fa;
+  --card-bg: #ffffff;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --text: #333;
+  --border: #d1d5db;
+  --error: #e11d48;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.btn-secondary {
+  margin: 0.5rem 0.25rem 0 0.25rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: var(--error);
+  margin-bottom: 1rem;
+}
+
+.drop-zone {
+  position: relative;
+  padding: 2rem;
+  border: 2px dashed var(--border);
+  border-radius: 0.75rem;
+  background: #fafafb;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: var(--primary);
+  background: #f0f0ff;
+}
+
+.drop-zone input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.drop-zone p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.preview {
+  margin-top: 1rem;
+}
+
+.preview img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.btn {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: var(--primary-hover);
+}
+
+.result {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.result strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.2rem;
+}
+
+/* Contenedor de botones */
+.actions {
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente */
+  gap: 0.75rem;
+  /* Espacio entre botones */
+  flex-wrap: wrap;
+  /* Permite que bajen de línea en pantallas estrechas */
+  margin-top: 1rem;
+  /* Separación respecto al bloque anterior */
+}
+
+/* Botones secundarios: convertidos a inline-flex para garantizar tamaño acorde */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  /* Quita subrayado en enlaces */
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+/* Fondo semitransparente */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease-out forwards;
+  z-index: 1000;
+}
+
+/* Caja blanca */
+.modal-content {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  transform: scale(0.8);
+  animation: zoomIn 0.25s ease-out forwards;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón cerrar */
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 1) Header fijo */
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.site-header .logo {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+
+/* 2) Empuja todo el main hacia abajo para dejar hueco al header */
+.page-content {
+  display: flex;
+  align-items: center;           /* centra verticalmente */
+  justify-content: center;       /* centra horizontalmente */
+  gap: 1rem;                      /* separación pequeña entre logo y card */
+  /* quita el padding‐top si no lo necesitas */
+  padding: 0;                     
+  /* ocupa toda la altura visible (menos el header) */
+  height: calc(100vh - 4rem);
+}
+
+.form-logo {
+  display: block;
+  width: 350px;
+  /* <-- pruébalo: 80px, 100px, etc. */
+  height: auto;
+  margin: 0;
+  /* espacio entre el logo y la card */
+  animation: zoomIn 0.7s ease-out forwards;
+}
+
+/* 3) Centrar la card o la pantalla de login/detección */
+.page-content .card {
+  margin: 0;
+}
+
+/* Contenedor de los enlaces de auth, empujado a la derecha */
+.site-header .auth-links {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.site-header .auth-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-header .auth-links span {
+  color: var(--border);
+}
+
+/* ——————————————————————————————————————————————————————————————————————
+   2) FORMULARIOS: labels e inputs justificados
+   —————————————————————————————————————————————————————————————————————— */
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  flex: 0 0 40%;
+  text-align: left;
+  font-weight: 500;
+}
+
+.form-group .input-field {
+  flex: 1 0 55%;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+}
+
+/* ——————————————————————————————————————————————————————————————————————
+   3) ESPACIADO EXTRA entre botón y texto de enlace
+   —————————————————————————————————————————————————————————————————————— */
+.card form>.btn {
+  margin-bottom: 1rem;
+}
+
+/* ——— PASSWORD VISIBILITY ——— */
+.password-group .input-wrapper {
+  /* Igual ancho que el .input-field normal dentro de .form-group */
+  flex: 1 0 55%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-group .input-wrapper .input-field {
+  /* forzamos al input a ocupar el 100% de ese wrapper */
+  flex: none;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding-right: 2rem;
+  /* mantenemos espacio para el icono */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #888;
+  /* ojo en gris suave */
+}
+
+.toggle-password:hover {
+  color: var(--text);
+}
+
+.toggle-password svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  /* <— ahora el icono se ve rellenado */
+  stroke: none;
+}
+
+.site-header .logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.site-header .logo img {
+  height: 2rem;
+  /* ajusta a tu gusto */
+  margin-right: 0.5rem;
+  /* espacio entre logo y texto */
+}
+
+.server-preview {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.server-preview img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Animaciones */
+@keyframes zoomIn {
+  to {
+    transform: scale(1);
+  }
+
+  from {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes zoomOut {
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}

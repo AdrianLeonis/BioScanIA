@@ -1,0 +1,8 @@
+Flask>=2.0
+tensorflow>=2.5   # o la versión que usaste para exportar el .pb
+keras
+Pillow
+numpy
+Flask-Login
+Flask-SQLAlchemy
+flask-migrate

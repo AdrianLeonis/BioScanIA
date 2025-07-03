@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Info sobre {{ pest }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <a href="{{ url_for('index') }}">← Volver</a>
+  <h1>¿Qué es {{ pest }}?</h1>
+  <p>{{ info_text }}</p>
+</body>
+</html>

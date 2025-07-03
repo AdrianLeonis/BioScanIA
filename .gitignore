@@ -1,0 +1,17 @@
+# Entorno virtual
+env/
+venv/
+
+# Base de datos local
+*.sqlite3
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+
+# Carpeta de subidas (si no quieres versionar las imágenes subidas)
+static/uploads/
+
+# VSCode / JetBrains
+.vscode/
+.idea/

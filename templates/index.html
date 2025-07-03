@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}Detección de Peste{% endblock %}
+
+{% block content %}
+<main class="card">
+  <h1>Detección de Peste</h1>
+
+  {% if error %}
+  <p class="error">{{ error }}</p>
+  {% endif %}
+
+  {% if image_url %}
+  <div class="server-preview">
+    <img src="{{ image_url }}" alt="Imagen subida" />
+  </div>
+  {% endif %}
+  
+  <form method="post" enctype="multipart/form-data">
+    <div class="drop-zone" id="drop-zone">
+      <p>Arrastra tu imagen aquí<br>o haz clic para seleccionar</p>
+      <input type="file" name="image" id="file-input" accept="image/*" required>
+    </div>
+    <div id="preview" class="preview"></div>
+    <button type="submit" class="btn">Detectar</button>
+  </form>
+
+  {% if prediction %}
+  <div class="result">
+    <span>🕵️ Predicción:</span>
+    <strong>{{ prediction }}</strong>
+  </div>
+  <div class="actions">
+    <button class="btn-secondary" data-action="info">Más Información</button>
+    <button class="btn-secondary" data-action="treatment">Ver Tratamientos</button>
+  </div>
+  {% endif %}
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <button id="modal-close" class="modal-close">&times;</button>
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+  </div>
+</div>
+{% endblock %}
