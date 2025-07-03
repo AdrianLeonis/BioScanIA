@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{% block title %}Mi App{% endblock %}</title>
+  <link rel="icon" 
+        type="image/png" 
+        href="{{ url_for('static', filename='logo.png') }}">
+  <title>{% block title %}BioScanIA{% endblock %}</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
@@ -17,6 +20,8 @@
     <nav class="auth-links">
       {% if current_user.is_authenticated %}
         <span class="username">{{ current_user.username }}</span>
+        <span>/</span>
+        <a href="{{ url_for('history') }}">Historial</a>
         <span>/</span>
         <a href="{{ url_for('auth.logout') }}">Logout</a>
       {% else %}

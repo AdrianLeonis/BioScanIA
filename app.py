@@ -107,7 +107,7 @@ def create_app():
 
                     det = Detection(
                         pest_name=prediction,
-                        image_path=os.path.relpath(full_path, start=app.root_path),
+                        image_path=rel_path,
                         user=current_user
                     )
                     db.session.add(det)
@@ -126,7 +126,18 @@ def create_app():
                                error=error,
                                image_url=None)
 
+    @app.route('/history')
+    @login_required
+    def history():
+        # trae todas las detecciones de este usuario, ordenadas por fecha
+        detections = Detection.query\
+            .filter_by(user_id=current_user.id)\
+            .order_by(Detection.timestamp.desc())\
+            .all()
+        return render_template('history.html', detections=detections)
+
     return app
+
 
 
 if __name__ == "__main__":

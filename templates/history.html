@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}BioScanIA{% endblock %}
+{% block content %}
+<div class="page-content">
+    <div class="card history">
+        <h1>Tu Historial</h1>
+        {% if detections %}
+        <div class="history-carousel">
+            {% for det in detections %}
+            <div class="slide">
+                <img src="{{ url_for('static', filename=det.image_path) }}" alt="{{ det.pest_name }}">
+                <time>{{ det.timestamp.strftime("%Y-%m-%d %H:%M") }}</time>
+                <p>{{ det.pest_name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No tienes detecciones aún.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

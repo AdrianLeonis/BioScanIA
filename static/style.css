@@ -373,6 +373,59 @@ h1 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.history-list li {
+  margin-bottom: 1.5rem;
+}
+.history-list .thumb {
+  display: block;
+  margin-top: 0.5rem;
+  max-width: 200px;     /* o el tamaño que prefieras */
+  border-radius: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.history-carousel {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 4rem;            /* antes 8rem, ahora 4rem */
+  margin: 0 auto;
+  max-width: none;
+}
+
+.history-carousel .slide {
+  display: inline-block;
+  width: 480px;             /* antes 960px, ahora 480px */
+  margin-right: 3rem;       /* antes 6rem, ahora 3rem */
+  vertical-align: top;
+  background: var(--card-bg);
+  border-radius: 1.5rem;    /* antes 3rem, ahora 1.5rem */
+  box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 2rem;            /* antes 4rem, ahora 2rem */
+}
+
+.history-carousel .slide img {
+  max-width: 100%;
+  height: 320px;            /* antes 640px, ahora 320px */
+  object-fit: cover;
+  border-radius: 1rem;      /* antes 2rem, ahora 1rem */
+}
+
+.history-carousel .slide time {
+  display: block;
+  font-size: 1rem;          /* antes 1.2rem, ahora 1rem */
+  margin-top: 1.5rem;       /* antes 3rem, ahora 1.5rem */
+}
+.card.history {
+  max-width: 675px;
+}
 /* Animaciones */
 @keyframes zoomIn {
   to {
